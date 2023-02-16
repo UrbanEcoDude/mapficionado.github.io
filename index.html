@@ -21,16 +21,16 @@
 		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 
 		<script>
-		var map = L.map('map').setView([51.055881251512616, 7.001907527582715], 15);
+		var map = L.map('map').setView([51.06124339207359, 7.028189312083531], 17);
     
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(map);
     
-		var circle = L.circle([51.055881251512616, 7.001907527582715], {
+		var circle = L.circle([51.06124339207359, 7.028189312083531], {
 				color: 'red',
 				fillColor: 'red',
 				fillOpacity: 0.2,
-				radius: 300
+				radius: 200
 			}).addTo(map).bindPopup('Evakuierungsradius');  
       	</script>
 
