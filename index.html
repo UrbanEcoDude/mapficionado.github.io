@@ -25,14 +25,13 @@
     
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(map);
-
     
 		var circle = L.circle([51.055881251512616, 7.001907527582715], {
 				color: 'red',
 				fillColor: 'red',
 				fillOpacity: 0.2,
 				radius: 300
-  		      }).addTo(map).bindPopup('Evakuierungsradius');  
+			}).addTo(map).bindPopup('Evakuierungsradius');  
       	</script>
 
 	</body>
