@@ -37,9 +37,8 @@
 // Hier wird die Karte eingebettet. (OpenStreetMap, MapBox, STAMEN usw.)
 // Keine Änderungen notwendig!
 
-		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				maxZoom: 19,
-				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+		var wmsLayer = L.tileLayer.wms('https://www.wms.nrw.de/geobasis/wms_nw_dtk', {
+				layers: 'WMS_NW_DTK'
 			}).addTo(map);
 
 
