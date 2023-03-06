@@ -24,6 +24,21 @@
 		<script>
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------			
+
+// Hier werden die unterschiedlichen Basiskarten eingebettet. (OpenStreetMap, ABK, DTK, MapBox, STAMEN usw.)
+// Keine Änderungen notwendig!
+
+	var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+		});
+	var abk = L.tileLayer.wms('https://www.wms.nrw.de/geobasis/wms_nw_abk', {
+		layers: 'WMS_NW_ABK'
+		});
+	var dtk = L.tileLayer.wms('https://www.wms.nrw.de/geobasis/wms_nw_dtk', {
+		layers: 'WMS_NW_DTK'
+		});			
+			
 			
 // Parameter, die beim Laden der Karte berücksichtigt werden.
 // Die Koordinaten beschreiben den Mittelpunkt des Kartenausschnitts.
@@ -31,15 +46,22 @@
 
 // ------------------------>  TO-DO: Koordinaten ersetzen, Zoomstufe anpassen <------------------------
 
-		var map = L.map('map').setView([51.06652611562176, 7.00330712883995], 17);
-
-
-// Hier wird die Karte eingebettet. (OpenStreetMap, MapBox, STAMEN usw.)
+	var map = L.map('map', {
+		center: [51.07654631268228, 6.99916007038576],
+		zoom: 16,
+		layers: [osm]
+		});
+			
+// Nun wird ein Button definiert, über den die unterschiedlichen Basiskarten aktiviert werden können:
 // Keine Änderungen notwendig!
 
-		var wmsLayer = L.tileLayer.wms('https://www.wms.nrw.de/geobasis/wms_nw_dtk', {
-				layers: 'WMS_NW_DTK'
-			}).addTo(map);
+	var baseLayers = {
+		"OpenStreetMap": osm,
+		"Amtliche Basiskarte": abk,
+		"Digitale Topographische Karte":dtk
+		};
+			
+	var layerControl = L.control.layers(baseLayers).addTo(map);
 
 
 // Jetzt wird ein Objekt auf der Karte definiert.
@@ -49,7 +71,7 @@
 
 // ------------------------> TO-DO: Koordinaten ersetzen, ggf. Radius anpassen <------------------------
     
-		var circle = L.circle([51.06652611562176, 7.00330712883995], {
+		var circle = L.circle([51.07654631268228, 6.99916007038576], {
 				color: 'black',
 				fillColor: 'red',
 				fillOpacity: 0.2,
