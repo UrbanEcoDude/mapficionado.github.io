@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>Evakuierungszone</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+
+    <style type="text/css">
+      body{margin: 0; padding: 0;}
+      #map {width: 100vw; height: 100vh;}
+    </style>
+
+  </head>
+	<body>
+		<div id="map"></div>
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+		<script>
+		var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			});
+
+		var abk = L.tileLayer.wms('https://www.wms.nrw.de/geobasis/wms_nw_abk', {
+				layers: 'WMS_NW_ABK'
+			});
+
+
+		var dtk = L.tileLayer.wms('https://www.wms.nrw.de/geobasis/wms_nw_dtk', {
+				layers: 'WMS_NW_DTK'
+			});
+
+
+
+		var Opladen = L.marker([51.06470828312592, 7.001990512687357])
+			.bindPopup('<b>Polizeiwache Opladen</b> <br /> Opladener Platz 6');
+
+		var Bergisch_Neukirchen = L.marker([51.08151594056619, 7.041024954117462])
+			.bindPopup('<b>Feuerwehr-Gerätehaus Bergisch Neukirchen</b> <br /> Opladener Platz 6');
+
+		var Lützenkirchen = L.marker([51.06417986353827, 7.042220354045791])
+			.bindPopup('<b>Feuerwehr-Gerätehaus Lützenkirchen</b> <br /> Lützenkirchener Straße 316');
+
+		var Steinbüchel = L.marker([51.05890247899147, 7.074779022215298])
+			.bindPopup('<b>Feuerwehr-Gerätehaus Steinbüchel</b> <br /> Am Steinberg 21');
+
+		var Schlebusch = L.marker([51.038324288689445, 7.053133055822103])
+			.bindPopup('<b>Feuerwehr-Gerätehaus Schlebusch</b> <br /> Opladener Straße 2');
+
+		var Bürrig = L.marker([51.04911478462464, 6.982458359322964])
+			.bindPopup('<b>Feuerwehr-Gerätehaus Bürrig</b> <br /> Im Steinfeld 43');
+
+		var Barmer_Haus = L.marker([51.030023323020245, 6.979540311147579])
+			.bindPopup('<b>Barmer Haus</b> <br /> Moskauer Straße 4a');
+
+		var Rheindorf = L.marker([51.051793753413186, 6.942429783326964])
+			.bindPopup('<b>Feuerwehr-Gerätehaus Rheindorf</b> <br /> Auf der Grieße 5');
+
+		var Hitdorf = L.marker([51.0582896503644, 6.922870987617623])
+			.bindPopup('<b>Feuerwehr-Gerätehaus Hitdorf</b> <br /> Hitdorfer Straße 111');
+
+		var notruf = L.layerGroup([Opladen, Bergisch_Neukirchen, Lützenkirchen, Steinbüchel, Schlebusch, Bürrig, Barmer_Haus, Rheindorf, Hitdorf]);
+
+		var map = L.map('map', {
+				center: [51.055979603344895, 6.991828533525659],
+				zoom: 13,
+				layers: [osm, notruf]
+			});
+
+		var baseLayers = {
+			"OpenStreetMap": osm,
+			"Amtliche Basiskarte": abk,
+			"Digitale Topographische Karte":dtk
+			};
+
+		var overlayMaps = {
+			"Anlaufstellen KIEZ-Notruf": notruf
+			};
+
+		var layerControl = L.control.layers(baseLayers, overlayMaps).addTo(map);
+
+      	</script>
+	</body>
+</html>
